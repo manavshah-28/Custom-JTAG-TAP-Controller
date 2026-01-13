@@ -1,7 +1,15 @@
 module tap(
     input tck,
     input tms,
-    input trst
+    input trst,
+
+    output o_shift_ir,
+    output o_capture_ir,
+    output o_update_ir,
+
+    output o_shift_dr,
+    output o_capture_dr,
+    output o_update_dr
 );
 
 // 16 state FSM

@@ -17,6 +17,13 @@ logic tck;
 logic tms;
 logic trst;
 
+logic o_shift_ir;
+logic o_capture_ir;
+logic o_update_ir;
+
+logic o_shift_dr;
+logic o_capture_dr;
+logic o_update_dr;
 // connect DUT
 tap DUT(.*);
 
