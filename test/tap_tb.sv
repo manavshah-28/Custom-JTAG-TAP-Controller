@@ -13,22 +13,22 @@ endclass
 
 module tap_tb();
 
-logic TCK;
-logic TMS;
-logic TRST;
+logic tck;
+logic tms;
+logic trst;
 
 // connect DUT
-TAP DUT(.*);
+tap DUT(.*);
 
 initial begin
-    TCK = 0;
-    forever #5 TCK = ~ TCK;
+    tck = 0;
+    forever #5 tck = ~ tck;
 end
 
 task toggle_rst();
-TRST = 0;
-repeat(2) @(posedge TCK);
-TRST = 1;
+trst = 0;
+repeat(2) @(posedge tck);
+trst = 1;
 endtask
 
 logic [9:0] sequenced;
@@ -45,10 +45,10 @@ seq = new();
     assert(seq.randomize());
     $display("%b", seq.tms_sequence);
 
-    // shift out the sequence on TMS wire
+    // shift out the sequence on tms wire
     for(int i = 0; i < 10; i ++) begin
-        @(negedge TCK) TMS = seq.tms_sequence[i];
-        @(posedge TCK) $display("TMS = %0h, current = %0h, next = %0h", seq.tms_sequence[i], DUT.curr_state.name(), DUT.next_state.name());
+        @(negedge tck) tms = seq.tms_sequence[i];
+        @(posedge tck) $display("tms = %0h, current = %0h, next = %0h", seq.tms_sequence[i], DUT.curr_state.name(), DUT.next_state.name());
     end
   end
   $finish();
