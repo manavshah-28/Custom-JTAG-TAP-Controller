@@ -18,9 +18,32 @@ module ibsc(
 
     input trst,
 
-    output o_logic,
-    output o_next_cell
+    output logic o_logic,
+    output logic o_next_cell
 );
+
+// tracking states of operation
+typedef enum logic [1:0] {
+    normal,
+    scan,
+    update,
+    capture
+} bsc_states;
+
+bsc_states curr_state;
+always_comb begin
+if(i_mode == 1'b0) curr_state = normal;
+else if (i_shift_dr == 1'b1) curr_state = scan;
+else if (i_mode == 1'b1) curr_state = update;
+else if (i_shift_dr == 1'b0) curr_state = capture;
+end
+
+always @(posedge clk_dr) begin
+if (curr_state == normal) begin 
+    assert(i_pin == o_logic) 
+    else $error("normal state output not equal to input");
+end
+end
 
 logic capture_ff;
 logic output_ff;
@@ -34,7 +57,7 @@ mux m1(
     .c(m1_out)
 );
 
-always @(posedge clk_dr)begin
+always @(posedge clk_dr or negedge trst)begin
 if(!trst) begin
 capture_ff <= 0;
 end
@@ -43,7 +66,7 @@ capture_ff <= m1_out;
 end
 end
 
-always @(posedge update_dr)begin
+always @(posedge update_dr or negedge trst)begin
 if(!trst) begin
 output_ff <= 0;
 end
