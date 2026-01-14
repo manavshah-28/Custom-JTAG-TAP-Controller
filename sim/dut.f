@@ -3,6 +3,7 @@
 ../src/ir.sv
 ../src/user_dr.sv
 ../src/bypass_reg.sv
+../src/alu.sv
 ../test/tap_tb.sv
 ../test/bsc_tb.sv
 ../test/ir_tb.sv

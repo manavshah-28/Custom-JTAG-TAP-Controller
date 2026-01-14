@@ -1,6 +1,6 @@
 # do run.do
 # QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
-# Start time: 00:07:05 on Jan 14,2026
+# Start time: 01:40:20 on Jan 14,2026
 # vlog -sv -work work -f ../sim/dut.f 
 # -- Compiling module tap
 # -- Compiling module mux
@@ -9,6 +9,7 @@
 # -- Compiling module ir
 # -- Compiling module user_dr
 # -- Compiling module bypass_reg
+# -- Compiling module alu
 # -- Compiling package tap_tb_sv_unit
 # -- Compiling module tap_tb
 # -- Compiling package bsc_tb_sv_unit
@@ -20,13 +21,14 @@
 # 	obsc
 # 	user_dr
 # 	bypass_reg
+# 	alu
 # 	tap_tb
 # 	bsc_tb
 # 	ir_tb
-# End time: 00:07:05 on Jan 14,2026, Elapsed time: 0:00:00
+# End time: 01:40:20 on Jan 14,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim work.tap_tb 
-# Start time: 00:07:05 on Jan 14,2026
+# Start time: 01:40:21 on Jan 14,2026
 # ** Note: (vsim-3812) Design is being optimized...
 # Support of the MGLS_LICENSE_FILE and LM_LICENSE_FILE licensing environment variables will be discontinued starting with the 2025.1 release. Please update to using the SALT_LICENSE_SERVER variable.
 # Please contact Siemens EDA Customer Support (https://support.sw.siemens.com/) for assistance.
@@ -47,20 +49,20 @@
 # Loading sv_std.std
 # Loading work.tap_tb_sv_unit(fast)
 # Loading work.tap_tb(fast)
-# End time: 00:07:07 on Jan 14,2026, Elapsed time: 0:00:02
+# End time: 01:40:23 on Jan 14,2026, Elapsed time: 0:00:02
 # Errors: 0, Warnings: 0
 # vsim work.bsc_tb 
-# Start time: 00:07:07 on Jan 14,2026
+# Start time: 01:40:23 on Jan 14,2026
 # ** Note: (vsim-3812) Design is being optimized...
 # Support of the MGLS_LICENSE_FILE and LM_LICENSE_FILE licensing environment variables will be discontinued starting with the 2025.1 release. Please update to using the SALT_LICENSE_SERVER variable.
 # Please contact Siemens EDA Customer Support (https://support.sw.siemens.com/) for assistance.
 # Loading sv_std.std
 # Loading work.bsc_tb_sv_unit(fast)
 # Loading work.bsc_tb(fast)
-# End time: 00:07:08 on Jan 14,2026, Elapsed time: 0:00:01
+# End time: 01:40:25 on Jan 14,2026, Elapsed time: 0:00:02
 # Errors: 0, Warnings: 0
 # vsim work.ir_tb 
-# Start time: 00:07:08 on Jan 14,2026
+# Start time: 01:40:25 on Jan 14,2026
 # ** Note: (vsim-3812) Design is being optimized...
 # Support of the MGLS_LICENSE_FILE and LM_LICENSE_FILE licensing environment variables will be discontinued starting with the 2025.1 release. Please update to using the SALT_LICENSE_SERVER variable.
 # Please contact Siemens EDA Customer Support (https://support.sw.siemens.com/) for assistance.
@@ -81,5 +83,5 @@
 # tdi = 0, shift_ir = 0, update_ir = 1, shift reg = 1100, hold_reg = 1100
 # ** Note: $finish    : ../test/ir_tb.sv(44)
 #    Time: 125 ns  Iteration: 1  Instance: /ir_tb
-# End time: 00:07:10 on Jan 14,2026, Elapsed time: 0:00:02
+# End time: 01:40:27 on Jan 14,2026, Elapsed time: 0:00:02
 # Errors: 0, Warnings: 0
