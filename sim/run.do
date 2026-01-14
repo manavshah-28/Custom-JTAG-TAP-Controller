@@ -17,6 +17,6 @@ vlog -sv -work work -f ../sim/dut.f
 # ----------------------------------
 vsim work.tap_tb
 vsim work.bsc_tb
-
+vsim work.ir_tb
 run -all
 quit

@@ -3,3 +3,4 @@
 ../src/ir.sv
 ../test/tap_tb.sv
 ../test/bsc_tb.sv
+../test/ir_tb.sv
