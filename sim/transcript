@@ -1,6 +1,6 @@
 # do run.do
 # QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
-# Start time: 06:45:40 on Jan 14,2026
+# Start time: 07:28:06 on Jan 14,2026
 # vlog -sv -work work -f ../sim/dut.f 
 # -- Compiling module tap
 # -- Compiling module mux
@@ -19,15 +19,14 @@
 # -- Compiling module ir_tb
 # 
 # Top level modules:
-# 	bypass_reg
 # 	jtag_top
 # 	tap_tb
 # 	bsc_tb
 # 	ir_tb
-# End time: 06:45:40 on Jan 14,2026, Elapsed time: 0:00:00
+# End time: 07:28:07 on Jan 14,2026, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
-# vsim work.tap_tb 
-# Start time: 06:45:40 on Jan 14,2026
+# vsim work.ir_tb 
+# Start time: 07:28:07 on Jan 14,2026
 # ** Note: (vsim-3812) Design is being optimized...
 # Support of the MGLS_LICENSE_FILE and LM_LICENSE_FILE licensing environment variables will be discontinued starting with the 2025.1 release. Please update to using the SALT_LICENSE_SERVER variable.
 # Please contact Siemens EDA Customer Support (https://support.sw.siemens.com/) for assistance.
@@ -46,26 +45,6 @@
 # // and may not be used in any way not expressly authorized by SISW.
 # //
 # Loading sv_std.std
-# Loading work.tap_tb_sv_unit(fast)
-# Loading work.tap_tb(fast)
-# End time: 06:45:42 on Jan 14,2026, Elapsed time: 0:00:02
-# Errors: 0, Warnings: 0
-# vsim work.bsc_tb 
-# Start time: 06:45:42 on Jan 14,2026
-# ** Note: (vsim-3812) Design is being optimized...
-# Support of the MGLS_LICENSE_FILE and LM_LICENSE_FILE licensing environment variables will be discontinued starting with the 2025.1 release. Please update to using the SALT_LICENSE_SERVER variable.
-# Please contact Siemens EDA Customer Support (https://support.sw.siemens.com/) for assistance.
-# Loading sv_std.std
-# Loading work.bsc_tb_sv_unit(fast)
-# Loading work.bsc_tb(fast)
-# End time: 06:45:44 on Jan 14,2026, Elapsed time: 0:00:02
-# Errors: 0, Warnings: 0
-# vsim work.ir_tb 
-# Start time: 06:45:44 on Jan 14,2026
-# ** Note: (vsim-3812) Design is being optimized...
-# Support of the MGLS_LICENSE_FILE and LM_LICENSE_FILE licensing environment variables will be discontinued starting with the 2025.1 release. Please update to using the SALT_LICENSE_SERVER variable.
-# Please contact Siemens EDA Customer Support (https://support.sw.siemens.com/) for assistance.
-# Loading sv_std.std
 # Loading work.ir_tb_sv_unit(fast)
 # Loading work.ir_tb(fast)
 # tdi = 1, shift_ir = 1, update_ir = x, shift reg = 0x, hold_reg = 0
@@ -82,5 +61,5 @@
 # tdi = 0, shift_ir = 0, update_ir = 1, shift reg = 1100, hold_reg = 1100
 # ** Note: $finish    : ../test/ir_tb.sv(44)
 #    Time: 125 ns  Iteration: 1  Instance: /ir_tb
-# End time: 06:45:45 on Jan 14,2026, Elapsed time: 0:00:01
+# End time: 07:28:08 on Jan 14,2026, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0

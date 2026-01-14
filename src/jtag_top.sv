@@ -33,6 +33,8 @@ logic [1:0] sel;
 logic [i_scan_cells : 0] i_scan_chains;
 logic [o_scan_cells : 0] o_scan_chains;
 
+// INSTRUCTION REGISTER
+logic [3:0]instruction;
 
 // BSR : BOUNDARY SCAN REGISTERS
 genvar i;
@@ -42,10 +44,10 @@ generate
 for(i = 0; i < i_scan_cells; i++)begin : gen_ibsc
 ibsc p_iubsc(
     .i_pin(input_pins[i]),
-    .i_shift_dr(shift_dr),
+    .i_shift_dr(o_shift_dr),
     .i_last_cell(i_scan_chains[i]),
     .clk_dr(clk_dr),
-    .update_dr(update_dr),
+    .update_dr(o_update_dr),
     .i_mode(i_mode),
     .trst(trst),
     .o_logic(input_sampled_pins[i]),
@@ -59,10 +61,10 @@ generate
 for(i = 0; i < o_scan_cells; i++)begin : gen_obsc
 obsc p_iubsc(
     .o_pin(output_pins[i]),
-    .i_shift_dr(shift_dr),
+    .i_shift_dr(o_shift_dr),
     .i_last_cell(o_scan_chains[i]),
     .clk_dr(clk_dr),
-    .update_dr(update_dr),
+    .update_dr(o_update_dr),
     .i_mode(i_mode),
     .trst(trst),
     .i_logic(output_sampled_pins[i]),
@@ -97,13 +99,13 @@ tap tap_controller(
 );
 
 // USER DATA REGISTERS
-user_dr(
+user_dr data_reg(
     .tck(tck),
     .tdi(tdi),
     .sel(sel), // select one of the 4 data registers to which tdi/tdo will connect
-    .capture_dr(capture_dr),
-    .shift_dr(shift_dr),
-    .update_dr(update_dr),
+    .capture_dr(o_capture_dr),
+    .shift_dr(o_shift_dr),
+    .update_dr(o_update_dr),
 
     .dr1_din(dr1_din),
     .dr2_din(dr2_din),
@@ -117,5 +119,21 @@ user_dr(
     .dr4_dout(dr4_dout)
 );
 
+// INSTRUCTION REGISTER
+ir instruction_reg(
+    .tck(tck),
+    .tdi(tdi),
+    .shift_ir(o_shift_ir),
+    .capture_ir(o_capture_dr),
+    .update_ir(o_update_ir),
+    .tdo(tdo),
+    .instruction(instruction)
+);
+
+bypass_reg byp_reg(
+    .tck(tck),
+    .tdi(tdi),
+    .tdo(tdo)
+);
 
 endmodule
