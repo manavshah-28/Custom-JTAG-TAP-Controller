@@ -70,4 +70,12 @@ always_comb begin
 
     endcase
 end
+
+assign o_shift_ir = (curr_state == shift_ir) ? 1 : 0;
+assign o_capture_ir = (curr_state == capture_ir) ? 1 : 0;
+assign o_update_ir = (curr_state == update_ir) ? 1 : 0;
+assign o_shift_dr = (curr_state == shift_dr) ? 1 : 0;
+assign o_capture_dr = (curr_state == capture_dr) ? 1 : 0;
+assign o_update_dr = (curr_state == update_dr) ? 1 : 0;
+
 endmodule
