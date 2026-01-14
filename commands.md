@@ -4,3 +4,6 @@
 
 ## Simulation and Waveforms of RTL in Questasim
 ```vsim -voptargs=+acc work.<name_of_testbench>```
+
+## view schematic
+```vsim -debugdb=+acc work.jtag_top```
