@@ -5,6 +5,7 @@
 ../src/bypass_reg.sv
 ../src/alu.sv
 ../src/jtag_top.sv
+../src/mux.sv
 ../test/tap_tb.sv
 ../test/bsc_tb.sv
 ../test/ir_tb.sv
