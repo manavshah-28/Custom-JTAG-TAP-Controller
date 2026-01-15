@@ -25,10 +25,10 @@ input mux_udr3,
 input mux_udr4,
 input [2:0] data_mux_sel,
 
-output data_mux_tdi
+output data_mux_tdo
 );
 
-assign data_mux_tdi = (data_mux_sel == 3'b000) ? mux_br   :
+assign data_mux_tdo = (data_mux_sel == 3'b000) ? mux_br   :
                       (data_mux_sel == 3'b001) ? mux_udr1 :
                       (data_mux_sel == 3'b010) ? mux_udr2 :
                       (data_mux_sel == 3'b011) ? mux_udr3 :
@@ -53,9 +53,9 @@ module tap_o_mux(
 input o_mux_sel,
 input inst_tdi,
 input data_tdi,
-output tdi
+output tdo
 );
 
-assign tdi = (o_mux_sel) ? inst_tdi : data_tdi;
+assign tdo = (o_mux_sel) ? inst_tdi : data_tdi;
 
 endmodule

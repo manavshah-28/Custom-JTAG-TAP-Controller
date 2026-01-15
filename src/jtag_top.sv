@@ -26,12 +26,21 @@ logic clk_dr, update_dr, i_mode, trst;
 logic o_shift_ir, o_capture_ir, o_update_ir, o_shift_dr, o_capture_dr, o_update_dr;
 
 // USER DATA REGISTER wires
-logic [3:0] dr1_din, dr2_din,dr3_din,dr4_din;
-logic [3:0] dr1_dout, dr2_dout, dr3_dout, dr4_dout;
+logic dr1_dout, dr2_dout, dr3_dout, dr4_dout;
 logic [1:0] sel;
+
+logic [2:0] data_demux_sel;
+logic demux_br, demux_udr1, demux_udr2, demux_udr3, demux_udr4;
+
+logic i_mux_sel; // 0 or 1
+logic inst_tdi, data_tdi;
 
 logic [i_scan_cells : 0] i_scan_chains;
 logic [o_scan_cells : 0] o_scan_chains;
+
+logic mux_br, mux_udr1, mux_udr2, mux_udr3, mux_udr4;
+logic [2:0] data_mux_sel;
+logic data_mux_tdo;
 
 // INSTRUCTION REGISTER
 logic [3:0]instruction;
@@ -101,22 +110,19 @@ tap tap_controller(
 // USER DATA REGISTERS
 user_dr data_reg(
     .tck(tck),
-    .tdi(tdi),
+    .demux_udr1(demux_udr1),
+    .demux_udr2(demux_udr2),
+    .demux_udr3(demux_udr3),
+    .demux_udr4(demux_udr4),
     .sel(sel), // select one of the 4 data registers to which tdi/tdo will connect
     .capture_dr(o_capture_dr),
     .shift_dr(o_shift_dr),
     .update_dr(o_update_dr),
 
-    .dr1_din(dr1_din),
-    .dr2_din(dr2_din),
-    .dr3_din(dr3_din),
-    .dr4_din(dr4_din),
-
-    .tdo(tdo),
-    .dr1_dout(dr1_dout),
-    .dr2_dout(dr2_dout),
-    .dr3_dout(dr3_dout),
-    .dr4_dout(dr4_dout)
+    .dr1_dout(mux_udr1),
+    .dr2_dout(mux_udr2),
+    .dr3_dout(mux_udr3),
+    .dr4_dout(mux_udr4)
 );
 
 // INSTRUCTION REGISTER
@@ -126,14 +132,51 @@ ir instruction_reg(
     .shift_ir(o_shift_ir),
     .capture_ir(o_capture_dr),
     .update_ir(o_update_ir),
-    .tdo(tdo),
+    .instr_reg_tdo(instr_reg_tdo), // connects to mux
     .instruction(instruction)
 );
 
 bypass_reg byp_reg(
     .tck(tck),
-    .tdi(tdi),
-    .tdo(tdo)
+    .tdi(demux_br),
+    .tdo(mux_br) // connects to mux
+);
+
+// connection Demux and Mux's
+tap_i_mux tap_demux(
+.tdi(tdi),
+.i_mux_sel(i_mux_sel),
+.inst_tdi(inst_tdi),
+.data_tdi(data_tdi)
+);
+//
+
+data_demux d_demux(
+ .tdi(data_tdi),
+ .data_demux_sel(data_demux_sel),
+ .demux_br(demux_br),
+ .demux_udr1(demux_udr1),
+ .demux_udr2(demux_udr2),
+ .demux_udr3(demux_udr3),
+ .demux_udr4(demux_udr4)
+);
+//
+
+data_mux d_mux(
+ .mux_br(mux_br),
+ .mux_udr1(mux_udr1),
+ .mux_udr2(mux_udr2),
+ .mux_udr3(mux_udr3),
+ .mux_udr4(mux_udr4),
+ .data_mux_sel(data_mux_sel),
+ .data_mux_tdo(data_mux_tdo)
+);
+
+tap_o_mux tap_mux(
+ .o_mux_sel(i_mux_sel),
+ .inst_tdi(instr_reg_tdo),
+ .data_tdi(data_mux_tdo),
+ .tdo(tdo)
 );
 
 endmodule

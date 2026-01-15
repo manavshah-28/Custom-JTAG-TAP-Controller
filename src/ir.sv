@@ -5,7 +5,7 @@ module ir(
     input capture_ir,
     input update_ir,
 
-    output tdo,
+    output instr_reg_tdo,
     output logic [3:0] instruction
 );
 

@@ -1,6 +1,6 @@
 # do run.do
 # QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
-# Start time: 03:47:53 on Jan 15,2026
+# Start time: 05:20:35 on Jan 15,2026
 # vlog -sv -work work -f ../sim/dut.f 
 # -- Compiling module tap
 # -- Compiling module mux
@@ -24,21 +24,19 @@
 # -- Compiling module jtag_tb
 # 
 # Top level modules:
-# 	data_demux
-# 	data_mux
-# 	tap_i_mux
-# 	tap_o_mux
 # 	tap_tb
 # 	bsc_tb
 # 	ir_tb
 # 	jtag_tb
-# End time: 03:47:53 on Jan 15,2026, Elapsed time: 0:00:00
+# End time: 05:20:35 on Jan 15,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim work.jtag_tb 
-# Start time: 03:47:53 on Jan 15,2026
+# Start time: 05:20:35 on Jan 15,2026
 # ** Note: (vsim-3812) Design is being optimized...
 # Support of the MGLS_LICENSE_FILE and LM_LICENSE_FILE licensing environment variables will be discontinued starting with the 2025.1 release. Please update to using the SALT_LICENSE_SERVER variable.
 # Please contact Siemens EDA Customer Support (https://support.sw.siemens.com/) for assistance.
+# ** Warning: ../src/jtag_top.sv(135): (vopt-2958) Implicit wire 'instr_reg_tdo' does not have any driver.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
 # //  Questa Sim-64
 # //  Version 2024.1 win64 Feb  1 2024
 # //
@@ -58,5 +56,5 @@
 ### EOT ###
 # ** Note: $finish    : ../test/jtag_tb.sv(44)
 #    Time: 265 ns  Iteration: 1  Instance: /jtag_tb
-# End time: 03:47:55 on Jan 15,2026, Elapsed time: 0:00:02
-# Errors: 0, Warnings: 0
+# End time: 05:20:37 on Jan 15,2026, Elapsed time: 0:00:02
+# Errors: 0, Warnings: 1
