@@ -1,0 +1,33 @@
+# Current time Thu Jan 15 03:19:31 2026
+# Program = vish
+# Id = "2024.1"
+# Version = "2024.02"
+# Date = "Feb  1 2024"
+# Platform = win64
+
+Exception c0000005 has occurred at address 1402f5d4e. Traceback:
+# 0    0x1402f5d4e: 'Mtirpc_Init + 0x14aa8e'
+# 1    0x1402ed556: 'Mtirpc_Init + 0x142296'
+# 2    0x1402feece: 'Mtirpc_Init + 0x153c0e'
+# 3    0x14021d972: 'Mtirpc_Init + 0x726b2'
+# 4    0x140424cb5: 'Sqlite3_Unload + 0x1cb65'
+# 5    0x14021ad10: 'Mtirpc_Init + 0x6fa50'
+# 6    0x14013f38d: '<unknown (@0x14013f38d)>'
+# 7    0x50a6e87b: 'TclCallVarTraces + 0x30b'
+# 8    0x50a7763d: 'Tcl_ObjSetVar2 + 0x4ad'
+# 9    0x509ebde1: 'Tcl_NRExprObj + 0x23b1'
+# 10   0x50978bfc: 'TclNRRunCallbacks + 0x5c'
+# 11   0x50978bfc: 'TclNRRunCallbacks + 0x5c'
+# 12   0x50a6b104: 'TclServiceIdle + 0xb74'
+# 13   0x50a6a5ff: 'TclServiceIdle + 0x6f'
+# 14   0x50a30e13: 'Tcl_DoOneEvent + 0x193'
+# 15   0x507fb655: 'Tk_MainLoop + 0x25'
+# 16   0x5083d972: 'Tk_MainEx + 0x932'
+# 17   0x1401cfcf2: 'Mtirpc_Init + 0x24a32'
+# 18   0x1401d2f01: 'Mtirpc_Init + 0x27c41'
+# 19   0x14098e7b0: 'Tclsqlite3_Init + 0x1e210'
+# 20   0x7ffc03dae8d7: 'BaseThreadInitThunk + 0x17'
+# 21   0x7ffc04fcc53c: 'RtlUserThreadStart + 0x2c'
+StackWalk failed 0
+# End of Stack Trace
+

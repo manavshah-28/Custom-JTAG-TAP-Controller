@@ -73,11 +73,11 @@ obsc p_iubsc(
 end
 endgenerate
 
+assign o_scan_chains[0] = i_scan_chains[12];
 // submodule declarations
 
 // ALU CUT
 alu cut (
-    .clk(clk),
     .rstn(rstn),
     .a(input_sampled_pins[11:8]),
     .b(input_sampled_pins[7:4]),

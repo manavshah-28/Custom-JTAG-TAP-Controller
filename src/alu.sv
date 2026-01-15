@@ -1,5 +1,4 @@
 module alu(
-    input clk,
     input rstn,
     input [3:0] a,
     input [3:0] b,
@@ -19,6 +18,7 @@ assign c = (op == 4'b0000) ? a + b : // add
            (op == 4'b1001) ? ~(a ^ b) :  // logical nor
            (op == 4'b1010) ? ~(a & b) :  // logical nand
            (op == 4'b1011) ? ~(a ^ b) :  // logical xnor
+           (!rstn) ? 4'b0000 :
            4'b0000;
 
 endmodule
