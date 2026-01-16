@@ -1,6 +1,7 @@
 module data_demux(
 input tdi,
 input [2:0] data_demux_sel,
+output boundary_scan_input,
 output demux_br,
 output demux_udr1,
 output demux_udr2,
@@ -13,11 +14,11 @@ assign demux_udr1 = (data_demux_sel == 3'b001) ? tdi : 0;
 assign demux_udr2 = (data_demux_sel == 3'b010) ? tdi : 0;
 assign demux_udr3 = (data_demux_sel == 3'b011) ? tdi : 0;
 assign demux_udr4 = (data_demux_sel == 3'b100) ? tdi : 0;
-
+assign boundary_scan_input = (data_demux_sel == 3'b101) ? tdi : 0;
 endmodule
 
 module data_mux(
-
+input boundary_scan_output,
 input mux_br,
 input mux_udr1,
 input mux_udr2,
@@ -33,6 +34,7 @@ assign data_mux_tdo = (data_mux_sel == 3'b000) ? mux_br   :
                       (data_mux_sel == 3'b010) ? mux_udr2 :
                       (data_mux_sel == 3'b011) ? mux_udr3 :
                       (data_mux_sel == 3'b100) ? mux_udr4 :
+                      (data_mux_sel == 3'b101) ? boundary_scan_output:
                       0;
 
 endmodule

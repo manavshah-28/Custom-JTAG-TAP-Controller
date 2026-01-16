@@ -1,42 +1,3 @@
-# do run.do
-# QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
-# Start time: 05:20:35 on Jan 15,2026
-# vlog -sv -work work -f ../sim/dut.f 
-# -- Compiling module tap
-# -- Compiling module mux
-# -- Compiling module ibsc
-# -- Compiling module obsc
-# -- Compiling module ir
-# -- Compiling module user_dr
-# -- Compiling module bypass_reg
-# -- Compiling module alu
-# -- Compiling module jtag_top
-# -- Compiling module data_demux
-# -- Compiling module data_mux
-# -- Compiling module tap_i_mux
-# -- Compiling module tap_o_mux
-# -- Compiling package tap_tb_sv_unit
-# -- Compiling module tap_tb
-# -- Compiling package bsc_tb_sv_unit
-# -- Compiling module bsc_tb
-# -- Compiling package ir_tb_sv_unit
-# -- Compiling module ir_tb
-# -- Compiling module jtag_tb
-# 
-# Top level modules:
-# 	tap_tb
-# 	bsc_tb
-# 	ir_tb
-# 	jtag_tb
-# End time: 05:20:35 on Jan 15,2026, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# vsim work.jtag_tb 
-# Start time: 05:20:35 on Jan 15,2026
-# ** Note: (vsim-3812) Design is being optimized...
-# Support of the MGLS_LICENSE_FILE and LM_LICENSE_FILE licensing environment variables will be discontinued starting with the 2025.1 release. Please update to using the SALT_LICENSE_SERVER variable.
-# Please contact Siemens EDA Customer Support (https://support.sw.siemens.com/) for assistance.
-# ** Warning: ../src/jtag_top.sv(135): (vopt-2958) Implicit wire 'instr_reg_tdo' does not have any driver.
-# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
 # //  Questa Sim-64
 # //  Version 2024.1 win64 Feb  1 2024
 # //
@@ -51,10 +12,241 @@
 # // of the Customer's facilities without the express written permission of SISW,
 # // and may not be used in any way not expressly authorized by SISW.
 # //
+# vsim -debugdb=+acc work.jtag_tb 
+# Start time: 21:59:49 on Jan 15,2026
+# ** Warning: (vsim-4308) Enabling visibility using +acc is recommended with debug flow.
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vsim-8611) Generating debug db.
+# ** Warning: (vopt-4308) Enabling visibility using +acc is recommended with debug flow.
+# Support of the MGLS_LICENSE_FILE and LM_LICENSE_FILE licensing environment variables will be discontinued starting with the 2025.1 release. Please update to using the SALT_LICENSE_SERVER variable.
+# Please contact Siemens EDA Customer Support (https://support.sw.siemens.com/) for assistance.
+# ** Note: (vopt-143) Recognized 1 FSM in module "tap(fast)".
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=2.
 # Loading sv_std.std
 # Loading work.jtag_tb(fast)
+# Loading work.jtag_top(fast)
+# Loading work.ibsc(fast)
+# Loading work.mux(fast)
+# Loading work.obsc(fast)
+# Loading work.alu(fast)
+# Loading work.tap(fast)
+# Loading work.user_dr(fast)
+# Loading work.ir(fast)
+# Loading work.bypass_reg(fast)
+# Loading work.tap_i_mux(fast)
+# Loading work.data_demux(fast)
+# Loading work.data_mux(fast)
+# Loading work.tap_o_mux(fast)
+# Loading work.i_decode(fast)
+# ** Note: (vsim-8900) Creating design debug database +acc.
+add wave -position insertpoint  \
+sim:/jtag_tb/jtag_top/data_reg/dr1 \
+sim:/jtag_tb/jtag_top/data_reg/dr2 \
+sim:/jtag_tb/jtag_top/data_reg/dr3 \
+sim:/jtag_tb/jtag_top/data_reg/dr4 \
+sim:/jtag_tb/jtag_top/data_reg/dr1_hold \
+sim:/jtag_tb/jtag_top/data_reg/dr2_hold \
+sim:/jtag_tb/jtag_top/data_reg/dr3_hold \
+sim:/jtag_tb/jtag_top/data_reg/dr4_hold
+run -all
+# state = test_logic_reset 
+# state = run_idle 
+# state = run_idle 
+# state = select_dr_scan 
+# state = select_ir_scan 
+# state = capture_ir 
+# state = shift_ir 
+# state = shift_ir 
+# state = shift_ir 
+# state = shift_ir 
+# state = shift_ir 
+# state = exit1_ir 
+# state = update_ir 
+# state = select_dr_scan 
+# state = capture_dr 
+# state = shift_dr 
+# state = shift_dr 
+# state = shift_dr 
+# state = shift_dr 
+# state = shift_dr 
+# state = exit1_dr 
+# state = update_dr 
+# state = select_dr_scan 
+# state = select_ir_scan 
+# state = test_logic_reset 
 ### EOT ###
-# ** Note: $finish    : ../test/jtag_tb.sv(44)
+# ** Note: $finish    : ../test/jtag_tb.sv(57)
 #    Time: 265 ns  Iteration: 1  Instance: /jtag_tb
-# End time: 05:20:37 on Jan 15,2026, Elapsed time: 0:00:02
+# 1
+# Break in Module jtag_tb at ../test/jtag_tb.sv line 57
+add wave -position insertpoint  \
+sim:/jtag_tb/jtag_top/i_scan_cells \
+sim:/jtag_tb/jtag_top/o_scan_cells \
+sim:/jtag_tb/jtag_top/clk \
+sim:/jtag_tb/jtag_top/rstn \
+sim:/jtag_tb/jtag_top/tdi \
+sim:/jtag_tb/jtag_top/tck \
+sim:/jtag_tb/jtag_top/tms \
+sim:/jtag_tb/jtag_top/trst \
+sim:/jtag_tb/jtag_top/tdo \
+sim:/jtag_tb/jtag_top/input_pins \
+sim:/jtag_tb/jtag_top/output_pins \
+sim:/jtag_tb/jtag_top/input_sampled_pins \
+sim:/jtag_tb/jtag_top/output_sampled_pins \
+sim:/jtag_tb/jtag_top/i_scan_chains \
+sim:/jtag_tb/jtag_top/o_scan_chains \
+sim:/jtag_tb/jtag_top/clk_dr \
+sim:/jtag_tb/jtag_top/update_dr \
+sim:/jtag_tb/jtag_top/i_mode \
+sim:/jtag_tb/jtag_top/o_shift_ir \
+sim:/jtag_tb/jtag_top/o_capture_ir \
+sim:/jtag_tb/jtag_top/o_update_ir \
+sim:/jtag_tb/jtag_top/o_shift_dr \
+sim:/jtag_tb/jtag_top/o_capture_dr \
+sim:/jtag_tb/jtag_top/o_update_dr \
+sim:/jtag_tb/jtag_top/boundary_scan_input \
+sim:/jtag_tb/jtag_top/boundary_scan_output \
+sim:/jtag_tb/jtag_top/dr1_dout \
+sim:/jtag_tb/jtag_top/dr2_dout \
+sim:/jtag_tb/jtag_top/dr3_dout \
+sim:/jtag_tb/jtag_top/dr4_dout \
+sim:/jtag_tb/jtag_top/data_demux_sel \
+sim:/jtag_tb/jtag_top/demux_br \
+sim:/jtag_tb/jtag_top/demux_udr1 \
+sim:/jtag_tb/jtag_top/demux_udr2 \
+sim:/jtag_tb/jtag_top/demux_udr3 \
+sim:/jtag_tb/jtag_top/demux_udr4 \
+sim:/jtag_tb/jtag_top/i_mux_sel \
+sim:/jtag_tb/jtag_top/inst_tdi \
+sim:/jtag_tb/jtag_top/data_tdi \
+sim:/jtag_tb/jtag_top/mux_br \
+sim:/jtag_tb/jtag_top/mux_udr1 \
+sim:/jtag_tb/jtag_top/mux_udr2 \
+sim:/jtag_tb/jtag_top/mux_udr3 \
+sim:/jtag_tb/jtag_top/mux_udr4 \
+sim:/jtag_tb/jtag_top/data_mux_sel \
+sim:/jtag_tb/jtag_top/data_mux_tdo \
+sim:/jtag_tb/jtag_top/instruction \
+sim:/jtag_tb/jtag_top/instr_reg_tdo
+run -all
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-8009) Loading existing optimized design _opt1
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading work.jtag_tb(fast)
+# Loading work.jtag_top(fast)
+# Loading work.ibsc(fast)
+# Loading work.mux(fast)
+# Loading work.obsc(fast)
+# Loading work.alu(fast)
+# Loading work.tap(fast)
+# Loading work.user_dr(fast)
+# Loading work.ir(fast)
+# Loading work.bypass_reg(fast)
+# Loading work.tap_i_mux(fast)
+# Loading work.data_demux(fast)
+# Loading work.data_mux(fast)
+# Loading work.tap_o_mux(fast)
+# Loading work.i_decode(fast)
+# ** Note: (vsim-8716) Reusing existing debug database +acc.
+run -all
+# state = test_logic_reset 
+# state = run_idle 
+# state = run_idle 
+# state = select_dr_scan 
+# state = select_ir_scan 
+# state = capture_ir 
+# state = shift_ir 
+# state = shift_ir 
+# state = shift_ir 
+# state = shift_ir 
+# state = shift_ir 
+# state = exit1_ir 
+# state = update_ir 
+# state = select_dr_scan 
+# state = capture_dr 
+# state = shift_dr 
+# state = shift_dr 
+# state = shift_dr 
+# state = shift_dr 
+# state = shift_dr 
+# state = exit1_dr 
+# state = update_dr 
+# state = select_dr_scan 
+# state = select_ir_scan 
+# state = test_logic_reset 
+### EOT ###
+# ** Note: $finish    : ../test/jtag_tb.sv(57)
+#    Time: 265 ns  Iteration: 1  Instance: /jtag_tb
+# 1
+# Break in Module jtag_tb at ../test/jtag_tb.sv line 57
+add wave -position insertpoint  \
+sim:/jtag_tb/jtag_top/instruction_reg/tck \
+sim:/jtag_tb/jtag_top/instruction_reg/tdi
+add wave -position insertpoint  \
+sim:/jtag_tb/jtag_top/instruction_reg/instruction \
+sim:/jtag_tb/jtag_top/instruction_reg/shift_reg \
+sim:/jtag_tb/jtag_top/instruction_reg/hold_reg
+add wave -position insertpoint  \
+sim:/jtag_tb/jtag_top/data_reg/dr1 \
+sim:/jtag_tb/jtag_top/data_reg/dr2 \
+sim:/jtag_tb/jtag_top/data_reg/dr3 \
+sim:/jtag_tb/jtag_top/data_reg/dr4 \
+sim:/jtag_tb/jtag_top/data_reg/dr1_hold \
+sim:/jtag_tb/jtag_top/data_reg/dr2_hold \
+sim:/jtag_tb/jtag_top/data_reg/dr3_hold \
+sim:/jtag_tb/jtag_top/data_reg/dr4_hold
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-8009) Loading existing optimized design _opt1
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading work.jtag_tb(fast)
+# Loading work.jtag_top(fast)
+# Loading work.ibsc(fast)
+# Loading work.mux(fast)
+# Loading work.obsc(fast)
+# Loading work.alu(fast)
+# Loading work.tap(fast)
+# Loading work.user_dr(fast)
+# Loading work.ir(fast)
+# Loading work.bypass_reg(fast)
+# Loading work.tap_i_mux(fast)
+# Loading work.data_demux(fast)
+# Loading work.data_mux(fast)
+# Loading work.tap_o_mux(fast)
+# Loading work.i_decode(fast)
+# ** Note: (vsim-8716) Reusing existing debug database +acc.
+run -all
+# state = test_logic_reset 
+# state = run_idle 
+# state = run_idle 
+# state = select_dr_scan 
+# state = select_ir_scan 
+# state = capture_ir 
+# state = shift_ir 
+# state = shift_ir 
+# state = shift_ir 
+# state = shift_ir 
+# state = shift_ir 
+# state = exit1_ir 
+# state = update_ir 
+# state = select_dr_scan 
+# state = capture_dr 
+# state = shift_dr 
+# state = shift_dr 
+# state = shift_dr 
+# state = shift_dr 
+# state = shift_dr 
+# state = exit1_dr 
+# state = update_dr 
+# state = select_dr_scan 
+# state = select_ir_scan 
+# state = test_logic_reset 
+### EOT ###
+# ** Note: $finish    : ../test/jtag_tb.sv(57)
+#    Time: 265 ns  Iteration: 1  Instance: /jtag_tb
+# 1
+# Break in Module jtag_tb at ../test/jtag_tb.sv line 57
+# A time value could not be extracted from the current line
+# End time: 22:11:29 on Jan 15,2026, Elapsed time: 0:11:40
 # Errors: 0, Warnings: 1

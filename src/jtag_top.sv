@@ -9,6 +9,7 @@ input rstn,
 input tdi,
 input tck,
 input tms,
+input trst,
 output tdo,
 
 // input pins
@@ -18,16 +19,22 @@ input logic [i_scan_cells - 1 : 0]  input_pins,
 output logic [o_scan_cells - 1 : 0] output_pins
 
 );
- 
+
+// BOUNDARY SCAN 
 logic [i_scan_cells - 1 : 0]  input_sampled_pins; 
 logic [o_scan_cells - 1 : 0]  output_sampled_pins;
+logic [i_scan_cells : 0] i_scan_chains;
+logic [o_scan_cells : 0] o_scan_chains;
 
-logic clk_dr, update_dr, i_mode, trst;
+
+logic clk_dr, update_dr, i_mode;
 logic o_shift_ir, o_capture_ir, o_update_ir, o_shift_dr, o_capture_dr, o_update_dr;
+
+logic boundary_scan_input;
+logic boundary_scan_output;
 
 // USER DATA REGISTER wires
 logic dr1_dout, dr2_dout, dr3_dout, dr4_dout;
-logic [1:0] sel;
 
 logic [2:0] data_demux_sel;
 logic demux_br, demux_udr1, demux_udr2, demux_udr3, demux_udr4;
@@ -35,8 +42,7 @@ logic demux_br, demux_udr1, demux_udr2, demux_udr3, demux_udr4;
 logic i_mux_sel; // 0 or 1
 logic inst_tdi, data_tdi;
 
-logic [i_scan_cells : 0] i_scan_chains;
-logic [o_scan_cells : 0] o_scan_chains;
+
 
 logic mux_br, mux_udr1, mux_udr2, mux_udr3, mux_udr4;
 logic [2:0] data_mux_sel;
@@ -83,6 +89,9 @@ end
 endgenerate
 
 assign o_scan_chains[0] = i_scan_chains[12];
+assign i_scan_chains[0] = boundary_scan_input;
+assign boundary_scan_output = o_scan_chains[4];
+
 // submodule declarations
 
 // ALU CUT
@@ -95,7 +104,7 @@ alu cut (
 );
 
 // TAP controller
-tap tap_controller(
+tap tap(
     .tck(tck),
     .tms(tms),
     .trst(trst),
@@ -104,7 +113,8 @@ tap tap_controller(
     .o_update_ir(o_update_ir),
     .o_shift_dr(o_shift_dr),
     .o_capture_dr(o_capture_dr),
-    .o_update_dr(o_update_dr)
+    .o_update_dr(o_update_dr),
+    .d_mux_sel(i_mux_sel)
 );
 
 // USER DATA REGISTERS
@@ -114,7 +124,6 @@ user_dr data_reg(
     .demux_udr2(demux_udr2),
     .demux_udr3(demux_udr3),
     .demux_udr4(demux_udr4),
-    .sel(sel), // select one of the 4 data registers to which tdi/tdo will connect
     .capture_dr(o_capture_dr),
     .shift_dr(o_shift_dr),
     .update_dr(o_update_dr),
@@ -154,6 +163,7 @@ tap_i_mux tap_demux(
 data_demux d_demux(
  .tdi(data_tdi),
  .data_demux_sel(data_demux_sel),
+ .boundary_scan_input(boundary_scan_input),
  .demux_br(demux_br),
  .demux_udr1(demux_udr1),
  .demux_udr2(demux_udr2),
@@ -163,12 +173,13 @@ data_demux d_demux(
 //
 
 data_mux d_mux(
+ .boundary_scan_output(boundary_scan_output),
  .mux_br(mux_br),
  .mux_udr1(mux_udr1),
  .mux_udr2(mux_udr2),
  .mux_udr3(mux_udr3),
  .mux_udr4(mux_udr4),
- .data_mux_sel(data_mux_sel),
+ .data_mux_sel(data_demux_sel),
  .data_mux_tdo(data_mux_tdo)
 );
 
@@ -177,6 +188,12 @@ tap_o_mux tap_mux(
  .inst_tdi(instr_reg_tdo),
  .data_tdi(data_mux_tdo),
  .tdo(tdo)
+);
+
+i_decode instr_decoder(
+    .instruction(instruction),
+    .i_mode(i_mode),
+    .mux_sel(data_demux_sel)
 );
 
 endmodule

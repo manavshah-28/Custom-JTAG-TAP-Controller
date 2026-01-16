@@ -9,7 +9,9 @@ module tap(
 
     output o_shift_dr,
     output o_capture_dr,
-    output o_update_dr
+    output o_update_dr,
+
+    output d_mux_sel
 );
 
 // 16 state FSM
@@ -77,5 +79,7 @@ assign o_update_ir = (curr_state == update_ir) ? 1 : 0;
 assign o_shift_dr = (curr_state == shift_dr) ? 1 : 0;
 assign o_capture_dr = (curr_state == capture_dr) ? 1 : 0;
 assign o_update_dr = (curr_state == update_dr) ? 1 : 0;
-
+assign d_mux_sel = (curr_state == shift_dr) ? 0 : 
+                   (curr_state == shift_ir) ? 1 : 
+                   0;  
 endmodule

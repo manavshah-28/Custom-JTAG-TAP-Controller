@@ -10,6 +10,7 @@ logic tms;
 logic tdo;
 logic [i_scan_cells - 1 : 0] input_pins;
 logic [o_scan_cells - 1 : 0] output_pins;
+logic trst;
 
 // clocking
 initial begin
@@ -25,19 +26,31 @@ end
 // reset 
 task toggle_rstn();
 rstn = 0;
-@(posedge clk);
-@(posedge clk);
+trst = 0;
+@(posedge tck);
+@(posedge tck);
 rstn = 1;
+trst = 1;
 endtask
 
-// CUT connect
-jtag_top CUT(.*);
+int i;
 
+// CUT connect
+jtag_top jtag_top(.*);
+
+logic [8:0] tdi_seq = 'b101010101;
+logic [22:0] tms_seq = 'b11111000000111000000110;
 initial begin
 toggle_rstn();
-
+tms = 0;
+tdi = 1;
+i = 0;
 repeat(25)begin
-@(posedge clk);
+@(posedge tck);
+tms = tms_seq[i];
+tdi = ~tdi;
+i++;
+$display("state = %0s ", jtag_top.tap.curr_state.name());
 end
 
 $display("### EOT ###");

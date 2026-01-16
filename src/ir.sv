@@ -19,14 +19,14 @@ end
 
 always @(posedge tck) begin
 if(shift_ir)begin
-shift_reg = (shift_reg << 1); 
-shift_reg[0] = tdi;
+shift_reg <= {shift_reg[2:0], tdi};
 end 
 else if(update_ir)begin
 hold_reg <= shift_reg;
 end
 end
 
+assign instr_reg_tdo = shift_reg[3];
 assign instruction =  hold_reg;
 
 endmodule

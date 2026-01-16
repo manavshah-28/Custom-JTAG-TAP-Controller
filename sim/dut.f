@@ -6,6 +6,7 @@
 ../src/alu.sv
 ../src/jtag_top.sv
 ../src/mux.sv
+../src/i_decode.sv
 ../test/tap_tb.sv
 ../test/bsc_tb.sv
 ../test/ir_tb.sv

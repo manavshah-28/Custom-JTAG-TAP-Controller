@@ -9,7 +9,7 @@ module user_dr #(parameter dr1_width = 4, dr2_width = 4, dr3_width = 4, dr4_widt
     input demux_udr2,
     input demux_udr3,
     input demux_udr4,
-    input [1:0] sel, // select one of the 4 data registers to which tdi/tdo will connect
+
     input capture_dr,
     input shift_dr,
     input update_dr,
@@ -34,47 +34,21 @@ logic [dr3_width-1:0] dr3_hold;
 logic [dr4_width-1:0] dr4_hold;
 
 always @(posedge tck)begin
-case(sel)
-2'b00 : begin
+
 if(shift_dr) begin
-    dr1 = demux_udr1;
-    dr1 = (dr1<<1);
+    dr1 <= {dr1[dr1_width-2:0],demux_udr1};    
+    dr2 <= {dr2[dr2_width-2:0],demux_udr2};
+    dr3 <= {dr3[dr3_width-2:0],demux_udr3};
+    dr4 <= {dr4[dr4_width-2:0],demux_udr4};
+
 end
 else if(update_dr) begin
     dr1_hold <= dr1;
-end
-end
-
-2'b01 : begin
-if(shift_dr) begin
-    dr2 = demux_udr2;
-    dr2 = (dr2<<1);
-end
-else if(update_dr) begin
     dr2_hold <= dr2;
-end
-end
-
-2'b10 : begin
-if(shift_dr) begin
-    dr3 = demux_udr3;
-    dr3 = (dr3<<1);
-end
-else if(update_dr) begin
     dr3_hold <= dr3;
-end
-end
-
-2'b11 : begin
-if(shift_dr) begin
-    dr4 = demux_udr4;
-    dr4 = (dr4<<1);
-end
-else if(update_dr) begin
     dr4_hold <= dr4;
 end
 end
-endcase
-end
+
 
 endmodule
